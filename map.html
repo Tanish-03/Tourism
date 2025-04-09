@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rajasthan Transport Map</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">Rajasthan Travel Map</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="map.html" class="active">Map</a></li>
+      <li><a href="air.html">Air</a></li>
+      <li><a href="rail.html">Rail</a></li>
+      <li><a href="road.html">Road</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header class="hero light">
+    <h1>Interactive Travel Map</h1>
+    <p>Visualize routes, airports, rail stations, and highways</p>
+  </header>
+
+  <!-- Map Section -->
+  <section class="map-container">
+    <div id="map" style="height: 600px;"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Designed by Sehtej Singh | BCA Project | 2025</p>
+  </footer>
+
+  <script>
+    var map = L.map('map').setView([26.9124, 75.7873], 6); // Jaipur
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data © OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Airports
+    L.marker([26.9124, 75.7873]).addTo(map).bindPopup("✈️ Jaipur International Airport");
+    L.marker([24.6176, 73.8907]).addTo(map).bindPopup("✈️ Udaipur Airport");
+    L.marker([26.2510, 73.0489]).addTo(map).bindPopup("✈️ Jodhpur Airport");
+
+    // Railway Stations
+    L.marker([28.0229, 73.3119]).addTo(map).bindPopup("🚆 Bikaner Junction");
+    L.marker([25.4358, 75.6460]).addTo(map).bindPopup("🚆 Kota Junction");
+
+    // Routes
+    L.polyline([[26.9124, 75.7873], [24.6176, 73.8907]], {color: 'blue'}).addTo(map).bindPopup("Jaipur → Udaipur");
+    L.polyline([[26.9124, 75.7873], [26.2510, 73.0489]], {color: 'green'}).addTo(map).bindPopup("Jaipur → Jodhpur");
+    L.polyline([[28.0229, 73.3119], [26.9124, 75.7873]], {color: 'red'}).addTo(map).bindPopup("Bikaner → Jaipur");
+  </script>
+
+</body>
+</html>
